@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Output - Autonomous AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .result-viewer {
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .viewer-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ai-icon {
+            color: #38bdf8;
+        }
+
+        .mac-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mac-controls span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .close {
+            background-color: #ff5f56;
+        }
+
+        .min {
+            background-color: #ffbd2e;
+        }
+
+        .max {
+            background-color: #27c93f;
+        }
+
+        .terminal-content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #94a3b8;
+        }
+
+        .terminal-content pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .success-text {
+            color: #4ade80;
+        }
+
+        .output-highlight {
+            color: #f8fafc;
+        }
+
+        .scroll-hint {
+            padding: 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 0.8rem;
+            color: #475569;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+    <div class="result-viewer">
+        <div class="viewer-header">
+            <div class="header-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="ai-icon">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>{{ filename }} - Application Output</span>
+            </div>
+            <div class="mac-controls">
+                <span class="min"></span>
+                <span class="max"></span>
+                <span class="close" onclick="window.close()"></span>
+            </div>
+        </div>
+        <div class="terminal-content">
+            <pre class="output-highlight">{{ output }}</pre>
+        </div>
+        <div class="scroll-hint">
+            Execution complete. Final Status: <span class="success-text">Success</span>
+        </div>
+    </div>
+</body>
+
+</html>

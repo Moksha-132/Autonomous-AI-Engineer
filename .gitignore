@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.vscode/
+venv/
+.venv/
+env/
+*.db
+!contact_book.db
+!contacts.db

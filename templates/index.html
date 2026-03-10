@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous AI Software Engineer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts for modern typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Highlight.js for code syntax highlighting -- using a very sleek theme -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header glass-panel">
+            <div class="logo">
+                <div class="logo-icon-wrapper">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ai-icon">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h1>Autonomous AI Engineer</h1>
+            </div>
+            <div class="status-badge" id="systemStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Ready</span>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="dashboard-grid">
+
+            <!-- Left Column: Controls & Pipeline -->
+            <div class="dashboard-sidebar">
+                <section class="input-section glass-panel">
+                    <div class="section-header">
+                        <h2>Feature Request</h2>
+                        <span class="badge">Input</span>
+                    </div>
+                    <p class="subtitle">Describe the software or feature you want the AI to build.</p>
+                    <div class="input-wrapper">
+                        <textarea id="promptInput" rows="6"></textarea>
+                    </div>
+                    <button id="generateBtn" class="primary-btn pulse-glow">
+                        <div class="btn-content">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                <path d="M12 8v4l3 3"></path>
+                            </svg>
+                            <span class="btn-text">Generate Software</span>
+                        </div>
+                        <span class="btn-loader hidden"></span>
+                    </button>
+                </section>
+
+                <!-- Pipeline Status -->
+                <section class="pipeline-section glass-panel">
+                    <div class="section-header">
+                        <h2>Pipeline Status</h2>
+                        <span class="badge">Live</span>
+                    </div>
+                    <div class="pipeline-tracker" id="pipelineTracker">
+                        <div class="stepper">
+                            <div class="step-item active" id="stepWait">
+                                <div class="step-icon">1</div>
+                                <div class="step-content">
+                                    <h4>Waiting</h4>
+                                    <p>Ready for request</p>
+                                </div>
+                            </div>
+                            <div class="step-connector"></div>
+                            <div class="step-item pending" id="stepGen">
+                                <div class="step-icon">2</div>
+                                <div class="step-content">
+                                    <h4>Generating Code</h4>
+                                    <p>AI agent programming</p>
+                                </div>
+                            </div>
+                            <div class="step-connector"></div>
+                            <div class="step-item pending" id="stepTest">
+                                <div class="step-icon">3</div>
+                                <div class="step-content">
+                                    <h4>Running Tests</h4>
+                                    <p>Automated validation</p>
+                                </div>
+                            </div>
+                            <div class="step-connector"></div>
+                            <div class="step-item pending" id="stepDeploy">
+                                <div class="step-icon">4</div>
+                                <div class="step-content">
+                                    <h4>Deploying</h4>
+                                    <p>Production release</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Code & Execution Results -->
+            <div class="dashboard-content">
+                <!-- Code Preview Panel -->
+                <section class="output-panel glass-panel" id="codePanel">
+                    <div class="panel-header">
+                        <div class="header-left">
+                            <span class="icon-file">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
+                                    <polyline points="13 2 13 9 20 9"></polyline>
+                                </svg>
+                            </span>
+                            <h2>Generated Code Viewer</h2>
+                        </div>
+                        <span class="file-name-badge" id="fileNameBadge">workspace/waiting...</span>
+                    </div>
+                    <div class="editor-window">
+                        <div class="editor-header">
+                            <div class="mac-btns">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="editor-tabs">
+                                <div class="tab active">source.py</div>
+                            </div>
+                        </div>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python" id="codeEditor"># The AI Software Engineer is standing by...
+# Enter a prompt and click Generate Software to begin.</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Execution Results Panel -->
+                <section class="results-panel glass-panel" id="resultsPanel">
+                    <div class="panel-header">
+                        <h2>Execution Results</h2>
+                        <button id="viewOutputBtn" class="action-btn small hidden">View Result</button>
+                    </div>
+                    <div class="results-grid">
+                        <!-- Test Results -->
+                        <div class="result-card" id="testResultBlock">
+                            <div class="card-header">
+                                <h4>Testing Console</h4>
+                                <span class="status-indicator" id="testStatusIndicator">Pending</span>
+                            </div>
+                            <div class="terminal-box" id="testOutput">Waiting for execution...</div>
+                        </div>
+
+                        <!-- NEW: Deployment Records -->
+                        <div class="result-card" id="deployResultBlock">
+                            <div class="card-header">
+                                <h4>Deployment Records</h4>
+                                <span class="status-indicator" id="deployStatusIndicator">Pending</span>
+                            </div>
+                            <div class="terminal-box" id="deployOutput">Waiting for deployment phase...</div>
+                        </div>
+
+                        <!-- App Output (The Result) -->
+                        <div class="result-card" id="finalResultBlock">
+                            <div class="card-header">
+                                <h4>App Interface</h4>
+                                <span class="status-indicator success">Action Required</span>
+                            </div>
+                            <div class="action-box" id="launchActionBox">
+                                <div class="launch-details">
+                                    <p>Your application is ready for execution. Visual verification complete.</p>
+                                </div>
+                                <button id="launchAppBtn" class="primary-btn launch-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    <span>Launch Application Output</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Developed by <span class="developer-name glow-text">Lakshmi Moksha Boya</span></p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
