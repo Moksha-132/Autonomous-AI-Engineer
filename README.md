@@ -39,3 +39,6 @@ An autonomous agent that generates, tests, and deploys full-stack web applicatio
    ```bash
    python app.py
    ```
+
+---
+Developed by **Lakshmi Moksha Boya**
